@@ -1,10 +1,11 @@
-﻿using System;
+﻿using CSharp_Assignment.Service;
+using System;
 
 namespace ECommerceApp
 {
     class Program
     {
-        static ECommerce e = new ECommerce();
+        static ECommerce ecommerce = new ECommerce();
         static Customer valid_customer;
         static bool isLogged = false;
         static void Main(string[] args)
@@ -62,12 +63,12 @@ namespace ECommerceApp
             string password = Console.ReadLine();
             Console.WriteLine("Enter Address");
             string address = Console.ReadLine();
-            e.CreateCustomer(1, password, name, email, address);
+            CustomerService.CreateCustomer(1, password, name, email, address); 
         }
 
         public static Customer Login()
         {
-           var valid_Customer = e.Login();
+           var valid_Customer = ecommerce.Login();
             isLogged = true;
             return valid_Customer;
         }
@@ -77,8 +78,7 @@ namespace ECommerceApp
             if (isLogged)
             {
                 Console.WriteLine($"Login as {valid_customer.Name}");
-                Console.WriteLine("1. Browse all products");
-                e.BrowseProducts();
+                ProductService.BrowseProducts();
             }
             else
             {
@@ -89,14 +89,14 @@ namespace ECommerceApp
         {
             if (isLogged)
             {
-                e.AddShoppingCart(valid_Customer);
+                ProductService.AddShoppingCart(valid_Customer);
             }
         }
         public static void ViewShoppingCart(Customer valid_Customer)
         {
             if(isLogged)
             {
-                e.ViewShoppingCart(valid_Customer);
+                ProductService.ViewShoppingCart(valid_Customer);
             }
             else
             {
