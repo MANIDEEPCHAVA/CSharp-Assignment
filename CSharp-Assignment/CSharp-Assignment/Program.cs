@@ -7,9 +7,11 @@ namespace ECommerceApp
     {
         static ECommerce ecommerce = new ECommerce();
         static Customer valid_customer;
+        
         static bool isLogged = false;
         static void Main(string[] args)
         {
+            Customer customer = new Customer();
             bool end = false;
             while (!end)
             {
@@ -19,7 +21,15 @@ namespace ECommerceApp
                 switch (choice)
                 {
                     case 1:
-                        CreateAccount();
+                        Console.WriteLine("Enter your name");
+                        string name = Console.ReadLine();
+                        Console.WriteLine("Enter email");
+                        string email = Console.ReadLine();
+                        Console.WriteLine("Enter password");
+                        string password = Console.ReadLine();
+                        Console.WriteLine("Enter Address");
+                        string address = Console.ReadLine();
+                        customer.CreateCustomer(1, password, name, email, address);
                         break;
 
                     case 2:
@@ -53,18 +63,6 @@ namespace ECommerceApp
             Console.WriteLine();
         }
 
-        public static void CreateAccount()
-        {
-            Console.WriteLine("Enter your name");
-            string name = Console.ReadLine();
-            Console.WriteLine("Enter email");
-            string email = Console.ReadLine();
-            Console.WriteLine("Enter password");
-            string password = Console.ReadLine();
-            Console.WriteLine("Enter Address");
-            string address = Console.ReadLine();
-            CustomerService.CreateCustomer(1, password, name, email, address); 
-        }
 
         public static Customer Login()
         {

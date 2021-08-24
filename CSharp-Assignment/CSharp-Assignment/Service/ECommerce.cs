@@ -1,20 +1,11 @@
 ﻿using CSharp_Assignment.Service;
-using ECommerceApp.IServices;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ECommerceApp
 {
     class ECommerce 
     {
-        
-               
-        public ECommerce()
-        {
-            
-        }
 
         public Customer Login()
         {
