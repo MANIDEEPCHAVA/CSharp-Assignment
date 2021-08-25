@@ -5,13 +5,11 @@ namespace ECommerceApp
 {
     class Program
     {
-        static ECommerce ecommerce = new ECommerce();
         static Customer valid_customer;
-        
         static bool isLogged = false;
         static void Main(string[] args)
         {
-            Customer customer = new Customer();
+            CustomerService customer = new CustomerService();
             bool end = false;
             while (!end)
             {
@@ -29,7 +27,7 @@ namespace ECommerceApp
                         string password = Console.ReadLine();
                         Console.WriteLine("Enter Address");
                         string address = Console.ReadLine();
-                        customer.CreateCustomer(1, password, name, email, address);
+                        customer.AddCustomer(1, password, name, email, address);
                         break;
 
                     case 2:
@@ -66,7 +64,7 @@ namespace ECommerceApp
 
         public static Customer Login()
         {
-           var valid_Customer = ecommerce.Login();
+            var valid_Customer = CustomerService.Login();
             isLogged = true;
             return valid_Customer;
         }
