@@ -14,8 +14,8 @@ namespace CSharp_Assignment.Service
 
         public void AddCustomer(int customerid, string password, string name, string email, string address)
         {
-            var cu = FindCustomer(email);
-            if (cu != null)
+            var customeraccount = FindCustomer(email);
+            if (customeraccount != null)
             {
                 Console.WriteLine("Account already exists");
             }
@@ -34,17 +34,18 @@ namespace CSharp_Assignment.Service
         {
             while (true)
             {
-                var userInput = new Customer();
+                string email;
+                string password;
                 Console.Clear();
                 Console.Write("Email: ");
-                userInput.Email = Console.ReadLine();
+                email = Console.ReadLine();
 
                 Console.Write("Password: ");
-                userInput.Password = ReadPassword();
+                password = ReadPassword();
 
                 var validCustomer = CustomerService.validCustomers
-                .Where(c => c.Email.Equals(userInput.Email))
-                .Where(c => c.Password.Equals(userInput.Password))
+                .Where(c => c.Email.Equals(email))
+                .Where(c => c.Password.Equals(password))
                 .FirstOrDefault();
 
                 if (validCustomer != null)
