@@ -36,14 +36,13 @@ namespace CSharp_Assignment.Service
             {
                 string email;
                 string password;
-                Console.Clear();
                 Console.Write("Email: ");
                 email = Console.ReadLine();
 
                 Console.Write("Password: ");
                 password = ReadPassword();
 
-                var validCustomer = CustomerService.validCustomers
+                var validCustomer = validCustomers
                 .Where(c => c.Email.Equals(email))
                 .Where(c => c.Password.Equals(password))
                 .FirstOrDefault();

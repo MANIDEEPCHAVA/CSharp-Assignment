@@ -28,7 +28,7 @@ namespace CSharp_Assignment.Service
             }
         }
 
-        public static void AddShoppingCart(Customer valid_Customer)
+        public static void AddShoppingCart(Customer validcustomer)
         {
             Console.Write("Enter the product ID you want to buy: ");
             int productId = int.Parse(Console.ReadLine());
@@ -43,24 +43,18 @@ namespace CSharp_Assignment.Service
 
             Console.Write("Enter quantity to buy: ");
             int quantity = int.Parse(Console.ReadLine());
-
-            var order = new Order();
-            order.Customer_Id = valid_Customer.CustomerId;
-            order.ProductId = productId;
-            order.OrderQuantity = quantity;
-            order.TotalAmount = quantity * selectedProduct.UnitPrice;
-
+            Order order = new Order();
+            order.CreateOrder(1, validcustomer.CustomerId, productId, quantity, selectedProduct.UnitPrice);
             shoppingCart.Add(order);
             Console.WriteLine($"{selectedProduct.ProductName} added into shopping cart.");
         }
-        public static void ViewShoppingCart(Customer valid_Customer)
+        public static void ViewShoppingCart(Customer validcustomer)
         {
             var shoppingCart2 = from s in shoppingCart
                                 join p in productList on s.ProductId equals p.Id
-                                select new { p.ProductName, p.UnitPrice, s.OrderQuantity, s.TotalAmount };
+                                select new { p.ProductName, p.UnitPrice, s.Quantity, s.TotalAmount };
             var totalOrderAmount = 0M;
             totalOrderAmount = shoppingCart.Sum(s => s.TotalAmount);
-            var table = new Product();
 
             if (shoppingCart2.ToList().Count == 0)
             {
@@ -69,7 +63,7 @@ namespace CSharp_Assignment.Service
             }
             foreach (var item in shoppingCart2)
             {
-                Console.WriteLine(item.ProductName + " =>" + "OrderQuantity" + " " + item.OrderQuantity + "=>" + "TotalAmount" + " " + item.TotalAmount);
+                Console.WriteLine(item.ProductName + " =>" + "OrderQuantity" + " " + item.Quantity + "=>" + "TotalAmount" + " " + item.TotalAmount);
             }
             Console.WriteLine("Total Items in Shopping Cart: " + shoppingCart2.Count());
 

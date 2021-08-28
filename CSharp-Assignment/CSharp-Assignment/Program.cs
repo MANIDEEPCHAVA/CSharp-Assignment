@@ -5,7 +5,7 @@ namespace ECommerceApp
 {
     class Program
     {
-        static Customer valid_customer;
+        static Customer ValidCustomer;
         static bool isLogged = false;
         static void Main(string[] args)
         {
@@ -31,15 +31,15 @@ namespace ECommerceApp
                         break;
 
                     case 2:
-                        valid_customer = Login();
+                        ValidCustomer = Login();
                         break;
 
                     case 3:
                         BrowseProducts();
-                        AddShoppingCart(valid_customer);
+                        AddShoppingCart(ValidCustomer);
                         break;
                     case 4:
-                        ViewShoppingCart(valid_customer);                        
+                        ViewShoppingCart(ValidCustomer);                        
                         break;
                     case 5:
                         end = true;
@@ -73,7 +73,7 @@ namespace ECommerceApp
         {
             if (isLogged)
             {
-                Console.WriteLine($"Login as {valid_customer.Name}");
+                Console.WriteLine($"Login as {ValidCustomer.Name}");
                 ProductService.BrowseProducts();
             }
             else
@@ -81,18 +81,18 @@ namespace ECommerceApp
                 Console.WriteLine("please Login ");
             }
         }
-        public static void AddShoppingCart(Customer valid_Customer)
+        public static void AddShoppingCart(Customer validcustomer)
         {
             if (isLogged)
             {
-                ProductService.AddShoppingCart(valid_Customer);
+                ProductService.AddShoppingCart(validcustomer);
             }
         }
-        public static void ViewShoppingCart(Customer valid_Customer)
+        public static void ViewShoppingCart(Customer validcustomer)
         {
             if(isLogged)
             {
-                ProductService.ViewShoppingCart(valid_Customer);
+                ProductService.ViewShoppingCart(validcustomer);
             }
             else
             {
