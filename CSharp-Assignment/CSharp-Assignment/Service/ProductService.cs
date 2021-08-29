@@ -44,7 +44,7 @@ namespace CSharp_Assignment.Service
             Console.Write("Enter quantity to buy: ");
             int quantity = int.Parse(Console.ReadLine());
             Order order = new Order();
-            order.CreateOrder(1, validcustomer.CustomerId, productId, quantity, selectedProduct.UnitPrice);
+            order = order.CreateOrder(1, validcustomer.CustomerId, productId, quantity, selectedProduct.UnitPrice);
             shoppingCart.Add(order);
             Console.WriteLine($"{selectedProduct.ProductName} added into shopping cart.");
         }
